@@ -31,7 +31,9 @@ def create_app(test_config=None):
 
 
     from . import db
+    from . import game
     db.init_app(app)
+    app.register_blueprint(game.bp)
 
 
     return app
