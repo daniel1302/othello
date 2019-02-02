@@ -7,16 +7,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
-bp = Blueprint('game', __name__, url_prefix='/game')
+bp = Blueprint('index', __name__, url_prefix='/')
 
-@bp.route('/index', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def index():
 
 
-    return render_template('game/index.html');
+    return "DUPA";
 
-
-@bp.route('/move', methods=['POST'])
-def move():
-
-    return redirect(url_for('game.index'))
