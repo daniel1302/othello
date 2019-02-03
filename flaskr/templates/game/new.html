@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	test
+{% endblock %}
+
+{% block content %}
+
+	<div>
+		<form method="POST" action="">
+			Wielkosc planszy:
+			<input type="text" size="3" name="width" value="10" /> x
+			<input type="text" size="3" name="height" value="10" />
+			<br>
+			<input type="submit" name="confirm" value="Rozpocznij gre" />
+		</form>
+	</div>
+
+
+
+{% endblock %}

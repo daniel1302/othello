@@ -5,15 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
+<a href="{{ url_for('game.new_game') }}">Rozpocznij gre</a>
 	<div>
+
 		<canvas id="game_board">
 
 		</canvas>
 	</div>
-
-
-
 {% endblock %}
 
 {% block javascripts %}
@@ -24,20 +22,28 @@
 {% block javascripts_body %}
 
 <script type="text/javascript">
-
+	var URL_GAME_MOVE = "{{ url_for('game.move') }}";
 	var canvas = document.getElementById('game_board');
 
-	let gameBoard = new GameBoard(canvas, 10, 10);
+	let WIDTH = {{ board_width }};
+	let HEIGHT = {{ board_height }};
+
+	let gameBoard = new GameBoard(canvas, WIDTH, HEIGHT);
 
 
-	gameBoard.redraw();
-	gameBoard.drawPawn(2,2, GameBoard.WHITE);
-	gameBoard.drawPawn(3,2, GameBoard.BLACK);
-	gameBoard.drawPawn(2,3, GameBoard.BLACK);
-	gameBoard.drawPawn(3,3, GameBoard.WHITE);
+	let moveService = function(jsonResponse) {
+		console.log(jsonResponse)
+	};
 
-	gameBoard.registerEvent(GameBoard.EVENT_CLICK, function(col, row) {
-		console.log('CLICKED '+col+': '+row);
+	gameBoard.redraw({{ board_state }});
+	gameBoard.registerEvent(GameBoard.EVENT_CLICK, function(clicked) {
+		let url = URL_GAME_MOVE+'?x='+clicked.x+'&y='+clicked.y;
+
+		fetch(url)
+			.then(function (response) {
+				return response.json();
+			})
+			.then(moveService);
 	});
 
 </script>
