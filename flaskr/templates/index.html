@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% block title %}
+	test
+{% endblock %}
+
 {% block content %}
-	TEST
+	Hej witaj na stronie głównej mojej gry. Co chcesz zrobić? <br />
+
+	<ul>
+		<li>
+			<a href="{{ url_for('game.index') }}">Rozpocznij gre</a>
+		</li>
+	</ul>
 {% endblock %}

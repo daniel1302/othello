@@ -13,5 +13,5 @@ bp = Blueprint('index', __name__, url_prefix='/')
 def index():
 
 
-    return "DUPA";
+    return render_template('index.html');
 

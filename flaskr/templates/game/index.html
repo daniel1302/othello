@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	test
+{% endblock %}
+
+{% block content %}
+
+	<div>
+		<canvas id="game_board">
+
+		</canvas>
+	</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/GameBoard.js') }}"></script>
+
+{% endblock %}
+
+{% block javascripts_body %}
+
+<script type="text/javascript">
+
+	var canvas = document.getElementById('game_board');
+
+	let gameBoard = new GameBoard(canvas, 10, 10);
+
+
+	gameBoard.redraw();
+	gameBoard.drawPawn(2,2, GameBoard.WHITE);
+	gameBoard.drawPawn(3,2, GameBoard.BLACK);
+	gameBoard.drawPawn(2,3, GameBoard.BLACK);
+	gameBoard.drawPawn(3,3, GameBoard.WHITE);
+
+</script>
+
+{% endblock %}
