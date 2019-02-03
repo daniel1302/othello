@@ -36,6 +36,10 @@
 	gameBoard.drawPawn(2,3, GameBoard.BLACK);
 	gameBoard.drawPawn(3,3, GameBoard.WHITE);
 
+	gameBoard.registerEvent(GameBoard.EVENT_CLICK, function(col, row) {
+		console.log('CLICKED '+col+': '+row);
+	});
+
 </script>
 
 {% endblock %}

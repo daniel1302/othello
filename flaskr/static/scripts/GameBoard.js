@@ -1,8 +1,8 @@
 class GameBoard
 		{
 			static get WHITE() { return '#ffffff'; }
-
 			static get BLACK() { return '#000000'; }
+			static get EVENT_CLICK() { return 'click'; }
 
 			constructor(canvas, cols, rows) {
 				this.canvas = canvas;
@@ -107,5 +107,30 @@ class GameBoard
 				this.ctx.stroke();
 				this.ctx.fillStyle = color;
 				this.ctx.fill();
+			}
+
+
+
+			registerEvent(type, callback) {
+				let allowedEvents = [GameBoard.EVENT_CLICK];
+
+				if (!allowedEvents.includes(type)) {
+					return;
+				}
+
+				let canvas = this.canvas;
+				let borderWidth = this.borderWidth;
+				let lineWidth = this.lineWidth;
+				let tileSize = this.tileSize;
+				this.canvas.addEventListener(type, function (evt) {
+					let rect = canvas.getBoundingClientRect();
+
+					let clicked = {
+						x: evt.clientX - rect.left - borderWidth,
+						y: evt.clientY - rect.top - borderWidth
+					};
+
+					callback(parseInt(clicked.x / (tileSize + lineWidth)), parseInt(clicked.y / (tileSize + lineWidth)));
+				});
 			}
 		}
