@@ -66,6 +66,7 @@ def move():
         game.move(x, y)
         session['board'] = game.get_board()
     except Exception as ex:
+        print(ex)
         return jsonify({
             'status': '500',
             'error': str(ex)

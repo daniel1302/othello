@@ -32,7 +32,8 @@
 
 
 	let moveService = function(jsonResponse) {
-		console.log(jsonResponse)
+		console.log(jsonResponse);
+		gameBoard.redraw(jsonResponse);
 	};
 
 	gameBoard.redraw({{ board_state }});

@@ -1,6 +1,5 @@
 from array import *
 from . import game_board
-from .point_calculator import point_calculator
 
 class point_calculator:
 
@@ -24,6 +23,11 @@ class point_calculator:
             int(self._in_line_up_left()),
             int(self._in_line_down_left())
         ])
+
+
+    def get_move(self):
+        return (self.x, self.y)
+
 
     def get_score(self):
         return self.score
